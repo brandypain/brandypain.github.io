@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>稀饭动漫-稀饭动漫在线观看_新番动漫追番与番剧推荐</title>
+<meta name="description" content="稀饭动漫是面向动漫爱好者的追番站点首页，提供稀饭动漫新番速览、番剧分类索引、追番清单与作品信息整理，帮助你快速找到想看的动画并安排观看顺序。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff6b4a'/%3E%3Cpath d='M20 18h24v28l-12-7-12 7z' fill='%23fff4e8'/%3E%3C/svg%3E">
+<style>
+:root{
+  --cream:#fdf6ee;
+  --paper:#fffdfa;
+  --ink:#2b2320;
+  --ink-soft:#6b5b53;
+  --coral:#ff6b4a;
+  --coral-deep:#e0492c;
+  --plum:#4b3a52;
+  --line:#eadfd4;
+  --shadow:0 10px 30px rgba(75,58,82,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",system-ui,sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1140px,92vw);margin:0 auto}
+
+/* header */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(253,246,238,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;gap:28px;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.22rem;letter-spacing:.5px;color:var(--plum)}
+.logo .mark{width:38px;height:38px;flex:0 0 auto}
+.logo span.brand{white-space:nowrap}
+nav.main{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap}
+nav.main a{font-size:.95rem;color:var(--ink-soft);padding:4px 0;border-bottom:2px solid transparent;transition:.2s}
+nav.main a:hover,nav.main a:focus-visible{color:var(--coral-deep);border-bottom-color:var(--coral)}
+.nav-cta{
+  background:var(--coral);color:#fff;padding:9px 18px;border-radius:999px;
+  font-size:.92rem;font-weight:600;white-space:nowrap;
+  box-shadow:0 6px 16px rgba(255,107,74,.28);transition:.2s;
+}
+.nav-cta:hover{background:var(--coral-deep)}
+
+/* hero */
+.hero{padding:64px 0 48px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;letter-spacing:2px;color:var(--coral-deep);font-weight:700;margin-bottom:18px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--coral)}
+h1{font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.18;font-weight:900;letter-spacing:1px;color:var(--plum)}
+h1 em{font-style:normal;color:var(--coral)}
+.hero-sub{margin-top:20px;font-size:1.02rem;color:var(--ink-soft);max-width:34em}
+.hero-actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:.96rem;transition:.2s;border:1.5px solid transparent}
+.btn-primary{background:var(--plum);color:#fff;box-shadow:0 10px 24px rgba(75,58,82,.22)}
+.btn-primary:hover{background:#3a2c40}
+.btn-ghost{border-color:var(--line);background:var(--paper);color:var(--plum)}
+.btn-ghost:hover{border-color:var(--coral);color:var(--coral-deep)}
+.hero-meta{margin-top:26px;display:flex;gap:26px;flex-wrap:wrap;font-size:.86rem;color:var(--ink-soft)}
+.hero-meta strong{display:block;font-size:1.4rem;color:var(--plum);font-weight:800;line-height:1.3}
+.hero-art{position:relative}
+.hero-art .card-frame{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow);transform:rotate(1.5deg)}
+.hero-art .badge{display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:1px}
+.hero-art .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.hero-art .strip div{height:8px;border-radius:4px;background:#f3e6da}
+.hero-art .strip div:nth-child(2){background:#ffd0c2}
+.hero-art .strip div:nth-child(3){background:#e3d5e6}
+
+/* section base */
+section.block{padding:56px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.sec-head h2{font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800;color:var(--plum);letter-spacing:.5px}
+.sec-head h2 small{display:block;font-size:.8rem;font-weight:600;letter-spacing:2px;color:var(--coral-deep);margin-bottom:6px}
+.sec-head p{color:var(--ink-soft);font-size:.94rem;max-width:38em}
+.link-more{font-size:.9rem;color:var(--coral-deep);font-weight:600;border-bottom:1px solid rgba(224,73,44,.35);padding-bottom:2px;white-space:nowrap}
+
+/* quick find */
+.finder{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow)}
+.finder-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.finder input[type=search]{
+  flex:1;min-width:220px;padding:13px 18px;border-radius:999px;border:1.5px solid var(--line);
+  background:var(--cream);font-size:.96rem;color:var(--ink);outline:none;transition:.2s;
+}
+.finder input[type=search]:focus{border-color:var(--coral);background:#fff}
+.tagrow{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.tag{font-size:.84rem;padding:6px 14px;border-radius:999px;background:var(--cream);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;transition:.2s;user-select:none}
+.tag.active,.tag:hover{background:var(--coral);border-color:var(--coral);color:#fff}
+.note{margin-top:14px;font-size:.82rem;color:var(--ink-soft)}
+
+/* cards */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;transition:.25s;box-shadow:0 4px 14px rgba(75,58,82,.04)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#f0d9cc}
+.card .ico{width:44px;height:44px;border-radius:12px;background:#ffe9e2;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.card h3{font-size:1.08rem;font-weight:800;color:var(--plum);margin-bottom:10px}
+.card p{font-size:.9rem;color:var(--ink-soft)}
+.card .meta{display:inline-block;margin-top:14px;font-size:.78rem;letter-spacing:1px;color:var(--coral-deep);font-weight:700}
+
+/* list */
+.list-wrap{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.list-item{display:flex;gap:20px;padding:22px 26px;border-bottom:1px solid var(--line);align-items:flex-start;transition:.2s}
+.list-item:last-child{border-bottom:none}
+.list-item:hover{background:#fff8f2}
+.list-num{font-size:1.5rem;font-weight:900;color:#f0d9cc;line-height:1.2;flex:0 0 46px;font-family:Georgia,serif}
+.list-body h3{font-size:1.02rem;font-weight:800;color:var(--plum);margin-bottom:6px}
+.list-body p{font-size:.88rem;color:var(--ink-soft)}
+.chips{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:.75rem;padding:3px 10px;border-radius:6px;background:var(--cream);color:var(--ink-soft);border:1px solid var(--line)}
+
+/* guide */
+.guide{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.guide .art{background:linear-gradient(150deg,#fff2ea,#f4eaf7);border-radius:22px;padding:30px;border:1px solid var(--line)}
+.guide .art h3{font-size:1.2rem;color:var(--plum);font-weight:800;margin-bottom:12px}
+.guide .art p{font-size:.9rem;color:var(--ink-soft)}
+.guide .steps{display:flex;flex-direction:column;gap:22px}
+.step{display:flex;gap:18px}
+.step .dot{flex:0 0 34px;height:34px;border-radius:50%;background:var(--plum);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem}
+.step h4{font-size:1rem;color:var(--plum);font-weight:800;margin-bottom:4px}
+.step p{font-size:.89rem;color:var(--ink-soft)}
+
+/* download */
+.download{background:linear-gradient(135deg,#4b3a52,#6d4f6e);border-radius:24px;padding:44px;color:#fff;display:flex;gap:32px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.download h2{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:800;margin-bottom:10px}
+.download p{color:#e6d9ec;font-size:.92rem;max-width:30em}
+.btn-disabled{background:#fff;color:#6d4f6e;pointer-events:none;opacity:.9}
+
+/* footer */
+footer.site{background:var(--plum);color:#d9cbe0;padding:48px 0 28px;margin-top:56px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.14)}
+.foot-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.1rem;color:#fff;margin-bottom:12px}
+footer.site p{font-size:.86rem;line-height:1.8;color:#c3b2cb}
+.foot-col h4{color:#fff;font-size:.92rem;margin-bottom:12px;font-weight:700}
+.foot-col a{display:block;font-size:.86rem;color:#c3b2cb;padding:3px 0;transition:.2s}
+.foot-col a:hover{color:#ffb9a8}
+.copy{padding-top:22px;text-align:center;font-size:.8rem;color:#a794b0}
+
+@media(max-width:900px){
+  .hero-grid,.guide,.grid-3,.grid-2{grid-template-columns:1fr}
+  .hero-art{order:-1;max-width:420px}
+  .foot-grid{grid-template-columns:1fr}
+  nav.main{display:none}
+  .nav-cta{margin-left:auto}
+  .download{padding:32px 24px}
+  h1{letter-spacing:0}
+}
+@media(max-width:520px){
+  .hero{padding:40px 0 32px}
+  .list-item{padding:18px 18px;gap:14px}
+  .list-num{flex-basis:34px;font-size:1.2rem}
+  .finder{padding:18px}
+  .hero-meta{gap:18px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top" aria-label="稀饭动漫 首页">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#ff6b4a"/>
+        <path d="M20 18h24v28l-12-7-12 7z" fill="#fff4e8"/>
+        <circle cx="32" cy="30" r="4" fill="#ff6b4a"/>
+      </svg>
+      <span class="brand">稀饭动漫</span>
+    </a>
+    <nav class="main" aria-label="主导航">
+      <a href="#new">新番速览</a>
+      <a href="#find">番剧分类</a>
+      <a href="#list">追番清单</a>
+      <a href="#guide">观看指南</a>
+      <a href="#download">下载</a>
+    </nav>
+    <a class="nav-cta" href="#find">开始找番</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">ANIME INDEX · 追番起点</span>
+        <h1>稀饭动漫</h1>
+        <p class="hero-sub">稀饭动漫是一个围绕动画作品整理与追番安排的首页：把新番、经典番与分类索引放在一处，让你先看清作品信息，再决定这一季看什么、补什么。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#new">浏览新番速览</a>
+          <a class="btn btn-ghost" href="#guide">查看追番指南</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>分类</strong>按题材与年份索引</div>
+          <div><strong>清单</strong>按季度整理追番</div>
+          <div><strong>信息</strong>作品简介与看点</div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="card-frame">
+          <div class="badge"><span>本季追番卡</span><span>NO.01</span></div>
+          <svg viewBox="0 0 320 190" role="img" aria-label="追番清单示意插画">
+            <rect x="0" y="0" width="320" height="190" rx="14" fill="#fdf1e8"/>
+            <rect x="18" y="20" width="120" height="14" rx="7" fill="#ff6b4a" opacity=".85"/>
+            <rect x="18" y="44" width="200" height="8" rx="4" fill="#e7d6c8"/>
+            <rect x="18" y="60" width="160" height="8" rx="4" fill="#e7d6c8"/>
+            <rect x="18" y="84" width="284" height="1" fill="#e7d6c8"/>
+            <rect x="18" y="100" width="84" height="70" rx="10" fill="#4b3a52"/>
+            <rect x="112" y="100" width="84" height="70" rx="10" fill="#ffb9a8"/>
+            <rect x="206" y="100" width="84" height="70" rx="10" fill="#d9c6e3"/>
+            <path d="M50 130l14 10 14-10v22l-14-6-14 6z" fill="#fff4e8"/>
+            <circle cx="154" cy="128" r="10" fill="#fff4e8"/>
+            <rect x="230" y="122" width="36" height="6" rx="3" fill="#fff4e8"/>
+            <rect x="230" y="136" width="24" height="6" rx="3" fill="#fff4e8"/>
+          </svg>
+          <div class="strip"><div></div><div></div><div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK FIND -->
+  <section class="block" id="find">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2><small>QUICK FIND</small>番剧分类与快速筛选</h2>
+          <p>先按题材或关键词缩小范围，再看卡片与清单里的作品信息。筛选只作用于本页列出的条目，方便你在稀饭动漫里直接定位想看的方向。</p>
+        </div>
+      </div>
+      <div class="finder">
+        <div class="finder-row">
+          <input type="search" id="q" placeholder="输入题材、关键词或番名片段，如：奇幻 / 校园 / 治愈" aria-label="搜索本页番剧条目">
+          <a class="btn btn-primary" href="#new">前往新番</a>
+        </div>
+        <div class="tagrow" id="tags">
+          <button class="tag active" data-tag="all" type="button">全部</button>
+          <button class="tag" data-tag="奇幻" type="button">奇幻</button>
+          <button class="tag" data-tag="校园" type="button">校园</button>
+          <button class="tag" data-tag="治愈" type="button">治愈</button>
+          <button class="tag" data-tag="热血" type="button">热血</button>
+          <button class="tag" data-tag="悬疑" type="button">悬疑</button>
+        </div>
+        <p class="note" id="note">当前显示本页全部 6 条作品条目。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW -->
+  <section class="block" id="new">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2><small>SEASON PICKS</small>新番速览</h2>
+          <p>稀饭动漫的新番速览按“看点—题材—观看顺序”三件事组织，不堆砌宣传语，只把决定要不要开追的信息放在前面。</p>
+        </div>
+        <a class="link-more" href="#list">看追番清单 →</a>
+      </div>
+      <div class="grid-3" id="cards">
+        <article class="card" data-tags="奇幻">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0492c" stroke-width="2" stroke-linecap="round"><path d="M12 3l2.6 6.2L21 12l-6.4 2.8L12 21l-2.6-6.2L3 12l6.4-2.8z"/></svg>
+          </div>
+          <h3>奇幻设定先看世界观</h3>
+          <p>奇幻类作品信息量集中在前两集的世界规则，先确认设定是否自洽，再判断后续展开是否值得跟。</p>
+          <span class="meta">奇幻 · 世界观</span>
+        </article>
+        <article class="card" data-tags="校园">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0492c" stroke-width="2" stroke-linecap="round"><path d="M3 20V9l9-6 9 6v11"/><path d="M9 20v-6h6v6"/></svg>
+          </div>
+          <h3>校园日常的节奏判断</h3>
+          <p>校园番看的是人物关系推进速度。前几集能否立住主角群，往往决定了整季的观感下限。</p>
+          <span class="meta">校园 · 群像</span>
+        </article>
+        <article class="card" data-tags="治愈">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0492c" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.6-7 10-7 10z"/></svg>
+          </div>
+          <h3>治愈系适合分集慢看</h3>
+          <p>治愈作品单集信息密度低、情绪浓度高，适合在通勤或睡前按集观看，不必一次追完。</p>
+          <span class="meta">治愈 · 慢节奏</span>
+        </article>
+        <article class="card" data-tags="热血">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0492c" stroke-width="2" stroke-linecap="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>
+          </div>
+          <h3>热血番的对战结构</h3>
+          <p>热血类作品通常以“训练—遭遇—升级”循环推进，关注战斗编排是否每轮都有新解法。</p>
+          <span class="meta">热血 · 战斗</span>
+        </article>
+        <article class="card" data-tags="悬疑">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0492c" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg>
+          </div>
+          <h3>悬疑线要看伏笔回收</h3>
+          <p>悬疑作品的评价关键在伏笔是否回收，追更时可以先记下疑点，季末再核对是否闭环。</p>
+          <span class="meta">悬疑 · 伏笔</span>
+        </article>
+        <article class="card" data-tags="奇幻 校园">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0492c" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+          </div>
+          <h3>跨题材混合的取舍</h3>
+          <p>混合题材容易两头不讨好，判断标准是看它把主要篇幅给了哪一边，再决定是否适合自己。</p>
+          <span class="meta">混合 · 题材</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIST -->
+  <section class="block" id="list">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2><small>WATCH LIST</small>本季追番清单</h2>
+          <p>把想看的作品列成清单，是稀饭动漫里最实用的一步。下面按“先看什么、为什么看”排列，每行都给出可核对的信息点。</p>
+        </div>
+      </div>
+      <div class="list-wrap">
+        <div class="list-item">
+          <div class="list-num">01</div>
+          <div class="list-body">
+            <h3>先定本周固定档</h3>
+            <p>选一部更新稳定的作品作为固定档，避免追番节奏被打乱。固定档适合放在每周同一天观看。</p>
+            <div class="chips"><span class="chip">固定档</span><span class="chip">更新稳定</span></div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-num">02</div>
+          <div class="list-body">
+            <h3>再排补番队列</h3>
+            <p>已完结作品适合集中补完。按集数长短排序，先补短篇，再决定是否投入长篇。</p>
+            <div class="chips"><span class="chip">补番</span><span class="chip">已完结</span></div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-num">03</div>
+          <div class="list-body">
+            <h3>留一部轻松番做调剂</h3>
+            <p>高强度剧情之外保留一部轻松向作品，能在连续观看时降低疲劳感，也更容易坚持整季。</p>
+            <div class="chips"><span class="chip">调剂</span><span class="chip">轻松向</span></div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-num">04</div>
+          <div class="list-body">
+            <h3>季末做一次取舍</h3>
+            <p>播出过半后重新评估：剧情推进是否达到预期、角色是否立住，及时放弃不合口味的作品。</p>
+            <div class="chips"><span class="chip">季末复盘</span><span class="chip">取舍</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section class="block" id="guide">
+    <div class="wrap guide">
+      <div class="art">
+        <h3>为什么需要一个追番起点</h3>
+        <p>每季新番数量多、信息分散，单靠零散推荐很难判断一部作品是否适合自己。稀饭动漫把作品信息、分类索引和追番清单放在同一页，先解决“看什么”，再解决“怎么安排看”。</p>
+        <p style="margin-top:12px">页面不提供播放服务，也不承诺具体上线时间，所有内容以作品信息整理与观看安排为主，便于你按自己的节奏使用。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="dot">1</div>
+          <div>
+            <h4>确认题材偏好</h4>
+            <p>先用分类标签缩小范围，奇幻、校园、治愈、热血、悬疑各有不同的观看预期。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">2</div>
+          <div>
+            <h4>核对作品信息</h4>
+            <p>看简介、看点与集数长度，判断投入成本。短篇适合试水，长篇需要更长的时间预算。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">3</div>
+          <div>
+            <h4>放进追番清单</h4>
+            <p>按固定档、补番队列、调剂作品三类归档，避免同时开太多线路导致弃番。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">4</div>
+          <div>
+            <h4>季末复盘调整</h4>
+            <p>回顾整季观感，记录值得推荐的作品，为下一季的稀饭动漫追番清单积累参考。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="block" id="download">
+    <div class="wrap">
+      <div class="download">
+        <div>
+          <h2>下载追番清单模板</h2>
+          <p>把本季想看、在追、已弃的作品整理成一份清单，方便离线记录与季末复盘。模板当前处于准备阶段，正式文件发布后可直接下载使用。</p>
+        </div>
+        <a class="btn btn-disabled" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#ff6b4a"/>
+            <path d="M20 18h24v28l-12-7-12 7z" fill="#fff4e8"/>
+          </svg>
+          稀饭动漫
+        </div>
+        <p>稀饭动漫专注动画作品信息整理与追番安排，提供新番速览、分类索引与追番清单，帮助动漫爱好者把“看什么”和“怎么看”安排清楚。</p>
+      </div>
+      <div class="foot-col">
+        <h4>内容栏目</h4>
+        <a href="#new">新番速览</a>
+        <a href="#find">番剧分类</a>
+        <a href="#list">追番清单</a>
+        <a href="#guide">观看指南</a>
+      </div>
+      <div class="foot-col">
+        <h4>使用说明</h4>
+        <a href="#download">下载模板</a>
+        <a href="#top">返回顶部</a>
+        <p style="margin-top:10px;font-size:.8rem">本页为信息整理页面，不提供视频播放与下载服务。</p>
+      </div>
+    </div>
+    <div class="copy">© 稀饭动漫 · 动画作品信息整理与追番安排</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var tags = document.getElementById('tags');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#cards .card'));
+  var note = document.getElementById('note');
+  var activeTag = 'all';
+
+  function apply(){
+    var kw = (q.value || '').trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(c){
+      var text = c.textContent.toLowerCase();
+      var t = c.getAttribute('data-tags') || '';
+      var okTag = activeTag === 'all' || t.indexOf(activeTag) > -1;
+      var okKw = !kw || text.indexOf(kw) > -1;
+      var ok = okTag && okKw;
+      c.style.display = ok ? '' : 'none';
+      if(ok) shown++;
+    });
+    note.textContent = '当前显示 ' + shown + ' 条作品条目' + (activeTag === 'all' ? '' : '（题材：' + activeTag + '）') + '。';
+  }
+
+  tags.addEventListener('click', function(e){
+    var b = e.target.closest('.tag');
+    if(!b) return;
+    Array.prototype.forEach.call(tags.querySelectorAll('.tag'), function(x){ x.classList.remove('active'); });
+    b.classList.add('active');
+    activeTag = b.getAttribute('data-tag');
+    apply();
+  });
+
+  q.addEventListener('input', apply);
+})();
+</script>
+
+</body>
+</html>
