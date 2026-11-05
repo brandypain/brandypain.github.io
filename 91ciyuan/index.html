@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>91次元浏览器-次元资源浏览入口_资源浏览与标签查找</title>
+<meta name="description" content="91次元浏览器主题首页，介绍次元资源浏览入口、标签查找、分类导航与常见使用问题，帮助访问者快速了解页面结构与浏览路径。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%237c6cff' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0f0c1d;
+  --bg-2:#171132;
+  --panel:#1d1740;
+  --panel-2:#241c4d;
+  --line:#332a63;
+  --text:#ece9ff;
+  --muted:#a9a2cf;
+  --accent:#7c6cff;
+  --accent-2:#ffd166;
+  --accent-3:#4fd1c5;
+  --radius:16px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(124,108,255,.22), transparent 60%),
+    radial-gradient(700px 420px at 0% 10%, rgba(79,209,197,.12), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img,svg{max-width:100%;display:block;}
+.wrap{width:min(1140px,92vw);margin:0 auto;}
+.skip{position:absolute;left:-9999px;}
+.skip:focus{left:12px;top:12px;background:var(--accent-2);color:#1a1330;padding:8px 14px;border-radius:8px;z-index:99;}
+
+/* header */
+header.site{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(14px);
+  background:rgba(15,12,29,.82);
+  border-bottom:1px solid var(--line);
+}
+.nav-bar{display:flex;align-items:center;gap:20px;padding:14px 0;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;letter-spacing:.5px;white-space:nowrap;}
+.logo .mark{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),#4b3fbf);
+  display:grid;place-items:center;flex:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08) inset;
+}
+nav.main{margin-left:auto;display:flex;gap:26px;font-size:.94rem;color:var(--muted);}
+nav.main a:hover{color:var(--text);}
+.nav-cta{
+  padding:8px 18px;border-radius:999px;font-size:.9rem;font-weight:600;
+  background:linear-gradient(135deg,var(--accent),#5a49d6);color:#fff;
+  border:1px solid rgba(255,255,255,.14);
+}
+.nav-cta:hover{filter:brightness(1.1);}
+.menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:6px 12px;font-size:.9rem;cursor:pointer;}
+
+/* hero */
+.hero{padding:64px 0 48px;position:relative;overflow:hidden;}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.8rem;letter-spacing:1.6px;color:var(--accent-3);
+  border:1px solid rgba(79,209,197,.35);border-radius:999px;padding:5px 14px;
+  background:rgba(79,209,197,.08);
+}
+h1{
+  font-size:clamp(2rem,4.4vw,3.15rem);
+  line-height:1.2;margin:20px 0 18px;font-weight:800;letter-spacing:.5px;
+}
+h1 .glow{
+  background:linear-gradient(100deg,#a99bff,#7c6cff 45%,#4fd1c5);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{color:var(--muted);font-size:1.03rem;max-width:56ch;margin:0 0 28px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:12px 24px;border-radius:12px;font-weight:600;font-size:.96rem;
+  border:1px solid transparent;transition:.2s;
+}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#5a49d6);color:#fff;box-shadow:0 12px 28px -14px rgba(124,108,255,.9);}
+.btn-primary:hover{transform:translateY(-1px);filter:brightness(1.08);}
+.btn-ghost{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.02);}
+.btn-ghost:hover{border-color:var(--accent);color:#cfc7ff;}
+.btn[aria-disabled="true"]{opacity:.65;cursor:not-allowed;}
+
+.hero-art{
+  position:relative;border-radius:22px;padding:22px;
+  background:linear-gradient(160deg,rgba(124,108,255,.18),rgba(79,209,197,.06));
+  border:1px solid var(--line);
+}
+.hero-art .orbit{animation:spin 26s linear infinite;transform-origin:center;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;text-align:center;}
+.hero-stats div{background:rgba(15,12,29,.55);border:1px solid var(--line);border-radius:12px;padding:10px 6px;}
+.hero-stats b{display:block;font-size:1.05rem;color:var(--accent-2);}
+.hero-stats span{font-size:.75rem;color:var(--muted);}
+
+/* section base */
+section{padding:56px 0;}
+.sec-head{max-width:62ch;margin-bottom:30px;}
+.sec-head .kicker{font-size:.78rem;letter-spacing:2px;color:var(--accent-3);font-weight:600;}
+h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin:8px 0 10px;font-weight:750;}
+.sec-head p{color:var(--muted);margin:0;font-size:.96rem;}
+
+/* entry cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{
+  background:linear-gradient(170deg,var(--panel),var(--bg-2));
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;transition:.25s;
+}
+.card:hover{transform:translateY(-3px);border-color:rgba(124,108,255,.65);}
+.card .ico{
+  width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  background:rgba(124,108,255,.16);border:1px solid rgba(124,108,255,.4);margin-bottom:16px;
+}
+.card h3{margin:0 0 8px;font-size:1.06rem;font-weight:700;}
+.card p{margin:0;color:var(--muted);font-size:.9rem;}
+
+/* guide list */
+.guide{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.step{
+  display:flex;gap:16px;padding:20px 22px;border-radius:var(--radius);
+  background:rgba(29,23,64,.6);border:1px solid var(--line);
+}
+.step .num{
+  flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  font-weight:800;color:#1a1330;background:linear-gradient(135deg,var(--accent-2),#ffb703);
+}
+.step h3{margin:0 0 6px;font-size:1rem;}
+.step p{margin:0;color:var(--muted);font-size:.9rem;}
+
+/* tags */
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.tag{
+  font-size:.85rem;padding:7px 15px;border-radius:999px;
+  border:1px solid var(--line);color:#cfc7ff;background:rgba(124,108,255,.08);
+}
+.tag:hover{border-color:var(--accent);color:#fff;}
+
+/* filter */
+.filters{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:22px;}
+.chip{
+  border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--muted);
+  padding:7px 16px;border-radius:999px;font-size:.88rem;cursor:pointer;transition:.2s;
+  font-family:inherit;
+}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;}
+.searchbox{margin-left:auto;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:999px;padding:6px 8px 6px 16px;}
+.searchbox input{
+  background:none;border:none;outline:none;color:var(--text);font-size:.9rem;font-family:inherit;width:190px;
+}
+.searchbox input::placeholder{color:#7c74a8;}
+.searchbox button{
+  background:var(--accent);border:none;color:#fff;border-radius:999px;padding:7px 16px;font-size:.85rem;cursor:pointer;font-family:inherit;font-weight:600;
+}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.entry{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:18px 20px;border-radius:14px;border:1px solid var(--line);
+  background:rgba(29,23,64,.55);
+}
+.entry h3{margin:0 0 4px;font-size:.98rem;}
+.entry p{margin:0;font-size:.84rem;color:var(--muted);}
+.entry .go{font-size:.82rem;color:var(--accent-3);white-space:nowrap;}
+.empty{display:none;color:var(--muted);font-size:.92rem;padding:22px 0;}
+
+/* faq */
+.faq{display:grid;gap:14px;}
+details{
+  border:1px solid var(--line);border-radius:14px;background:rgba(29,23,64,.5);
+  padding:16px 20px;
+}
+summary{cursor:pointer;font-weight:650;font-size:.98rem;list-style:none;display:flex;justify-content:space-between;gap:12px;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+";color:var(--accent-3);font-weight:700;}
+details[open] summary::after{content:"–";}
+details p{margin:12px 0 0;color:var(--muted);font-size:.9rem;}
+
+/* download */
+.download{
+  margin-top:8px;border-radius:22px;padding:34px;
+  background:linear-gradient(120deg,rgba(124,108,255,.22),rgba(79,209,197,.1));
+  border:1px solid rgba(124,108,255,.45);
+  display:flex;flex-wrap:wrap;align-items:center;gap:24px;justify-content:space-between;
+}
+.download h2{margin:0 0 8px;}
+.download p{margin:0;color:var(--muted);font-size:.92rem;max-width:58ch;}
+
+/* footer */
+footer.site{
+  border-top:1px solid var(--line);margin-top:40px;padding:36px 0 26px;
+  background:rgba(15,12,29,.7);
+}
+.foot-grid{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;}
+.foot-brand{max-width:340px;}
+.foot-brand p{color:var(--muted);font-size:.88rem;margin:12px 0 0;}
+.foot-links{display:flex;flex-wrap:wrap;gap:48px;}
+.foot-col h4{font-size:.82rem;letter-spacing:1.5px;color:var(--accent-3);margin:0 0 12px;font-weight:600;}
+.foot-col a{display:block;color:var(--muted);font-size:.88rem;margin-bottom:8px;}
+.foot-col a:hover{color:var(--text);}
+.copy{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:.8rem;color:#7c74a8;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:32px;}
+  .cards{grid-template-columns:1fr 1fr;}
+  .guide{grid-template-columns:1fr;}
+  .list{grid-template-columns:1fr;}
+}
+@media (max-width:680px){
+  nav.main{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;padding:10px 5vw 18px;
+    background:rgba(15,12,29,.98);border-bottom:1px solid var(--line);
+  }
+  nav.main.open{display:flex;}
+  nav.main a{padding:12px 0;border-bottom:1px solid rgba(51,42,99,.5);}
+  .menu-toggle{display:block;}
+  .nav-cta{display:none;}
+  .cards{grid-template-columns:1fr;}
+  .hero{padding:44px 0 34px;}
+  .searchbox{margin-left:0;width:100%;}
+  .searchbox input{width:100%;}
+  section{padding:42px 0;}
+  .download{padding:24px;}
+  .foot-links{gap:30px;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="site">
+  <div class="wrap nav-bar">
+    <a class="logo" href="#top" aria-label="91次元浏览器 首页">
+      <span class="mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="7.5" stroke="#fff" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="3" fill="#ffd166"/>
+          <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </span>
+      91次元浏览器
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">菜单</button>
+    <nav class="main" id="mainNav" aria-label="主导航">
+      <a href="#entry">浏览入口</a>
+      <a href="#guide">使用路径</a>
+      <a href="#catalog">标签索引</a>
+      <a href="#faq">常见问题</a>
+      <a class="nav-cta" href="#download">获取页面</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div id="top"></div>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">次元内容浏览 · 主题首页</span>
+        <h1><span class="glow">91次元浏览器</span></h1>
+        <p class="lead">91次元浏览器是一个面向次元内容访问的主题入口页。这里把浏览路径、标签索引与使用说明集中在一处，让访问者先了解页面结构，再决定从哪个入口进入，减少在零散链接之间反复跳转。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#entry">进入浏览入口
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#catalog">查看标签索引</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 320 260" role="img" aria-label="次元浏览主题插画">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7c6cff"/><stop offset="1" stop-color="#4fd1c5"/>
+            </linearGradient>
+          </defs>
+          <rect x="20" y="24" width="280" height="200" rx="16" fill="#171132" stroke="#332a63"/>
+          <rect x="20" y="24" width="280" height="34" rx="16" fill="#241c4d"/>
+          <circle cx="42" cy="41" r="5" fill="#ff6b81"/>
+          <circle cx="60" cy="41" r="5" fill="#ffd166"/>
+          <circle cx="78" cy="41" r="5" fill="#4fd1c5"/>
+          <g class="orbit" style="transform-origin:160px 150px;">
+            <circle cx="160" cy="150" r="58" fill="none" stroke="url(#g1)" stroke-width="2" stroke-dasharray="6 10"/>
+            <circle cx="218" cy="150" r="6" fill="#ffd166"/>
+            <circle cx="102" cy="150" r="4" fill="#4fd1c5"/>
+          </g>
+          <circle cx="160" cy="150" r="30" fill="none" stroke="#7c6cff" stroke-width="3"/>
+          <circle cx="160" cy="150" r="11" fill="#ffd166"/>
+          <rect x="60" y="196" width="80" height="8" rx="4" fill="#332a63"/>
+          <rect x="152" y="196" width="52" height="8" rx="4" fill="#332a63"/>
+        </svg>
+        <div class="hero-stats">
+          <div><b>3</b><span>浏览入口</span></div>
+          <div><b>4</b><span>使用步骤</span></div>
+          <div><b>5</b><span>常见问答</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 浏览入口 -->
+  <section id="entry">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">BROWSE ENTRY</span>
+        <h2>91次元浏览器的三类浏览入口</h2>
+        <p>不同访问者的目标并不相同：有人想按分类逐层查找，有人已知标签想直接定位，也有人只想先熟悉界面。下面三条入口分别对应这三种需求，可按需选择。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="7" height="7" rx="2" stroke="#a99bff" stroke-width="1.8"/><rect x="14" y="4" width="7" height="7" rx="2" stroke="#a99bff" stroke-width="1.8"/><rect x="3" y="15" width="7" height="5" rx="2" stroke="#a99bff" stroke-width="1.8"/><rect x="14" y="15" width="7" height="5" rx="2" stroke="#a99bff" stroke-width="1.8"/></svg>
+          </div>
+          <h3>分类导航</h3>
+          <p>按内容大类自上而下浏览，适合尚未确定目标、希望先看整体范围的访问者。分类页保持统一的层级，返回路径清晰。</p>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#4fd1c5" stroke-width="1.8"/><path d="M16.5 16.5L21 21" stroke="#4fd1c5" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>标签查找</h3>
+          <p>已知具体标签时，直接在索引中定位对应条目，跳过中间层级。标签之间可以组合阅读，便于横向比较同类内容。</p>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h13" stroke="#ffd166" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>新人熟悉</h3>
+          <p>第一次访问时，先读使用路径与常见问题，了解页面如何组织、入口如何跳转，再进入正式浏览，能减少误点与折返。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 使用路径 -->
+  <section id="guide">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">HOW TO USE</span>
+        <h2>从进入到定位的四步使用路径</h2>
+        <p>91次元浏览器的页面组织遵循“先宽后窄”的顺序：先建立范围感，再逐步缩小到具体条目。按以下顺序操作，通常比直接搜索更省时间。</p>
+      </div>
+      <div class="guide">
+        <div class="step">
+          <div class="num">1</div>
+          <div><h3>确认浏览方向</h3><p>打开首页后先看分类导航，判断目标属于哪一大类。方向明确后，后续的标签筛选才有意义。</p></div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div><h3>用标签缩小范围</h3><p>进入大类后，结合标签索引做二次筛选。多个标签叠加时，优先保留区分度最高的那个。</p></div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div><h3>核对条目信息</h3><p>打开条目前先看标题与简介是否匹配需求，避免在无关页面上消耗时间，也便于判断是否需要换标签。</p></div>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <div><h3>记录返回路径</h3><p>浏览较深时留意层级，或使用浏览器后退返回上一层，保持浏览位置不丢失，方便继续比较。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 标签索引 + 筛选 -->
+  <section id="catalog">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">TAG INDEX</span>
+        <h2>按标签查找次元内容</h2>
+        <p>下面是首页展示的标签索引示例，覆盖常见的内容分类方向。可用分类按钮或关键词框筛选，结果会即时更新；未命中时页面会给出提示。</p>
+      </div>
+      <div class="filters" role="group" aria-label="标签分类筛选">
+        <button class="chip" data-cat="all" aria-pressed="true">全部</button>
+        <button class="chip" data-cat="漫画" aria-pressed="false">漫画</button>
+        <button class="chip" data-cat="动画" aria-pressed="false">动画</button>
+        <button class="chip" data-cat="周边" aria-pressed="false">周边</button>
+        <div class="searchbox">
+          <label for="q" class="skip">搜索标签</label>
+          <input id="q" type="search" placeholder="搜索标签，如：连载">
+          <button type="button" id="searchBtn">筛选</button>
+        </div>
+      </div>
+      <div class="list" id="list">
+        <a class="entry" href="#entry" data-cat="漫画"><div><h3>连载漫画</h3><p>按更新节奏排列的连载类条目</p></div><span class="go">查看 →</span></a>
+        <a class="entry" href="#entry" data-cat="动画"><div><h3>动画番剧</h3><p>季度与长篇动画的分类入口</p></div><span class="go">查看 →</span></a>
+        <a class="entry" href="#entry" data-cat="漫画"><div><h3>短篇合集</h3><p>篇幅较短、适合单次阅读的合集</p></div><span class="go">查看 →</span></a>
+        <a class="entry" href="#entry" data-cat="动画"><div><h3>剧场版</h3><p>独立成篇的动画电影类条目</p></div><span class="go">查看 →</span></a>
+        <a class="entry" href="#entry" data-cat="周边"><div><h3>设定资料</h3><p>世界观、角色与制作相关整理</p></div><span class="go">查看 →</span></a>
+        <a class="entry" href="#entry" data-cat="周边"><div><h3>同人创作</h3><p>二次创作与衍生内容的归类</p></div><span class="go">查看 →</span></a>
+      </div>
+      <p class="empty" id="empty">没有匹配的标签，请更换分类或关键词后再试。</p>
+      <div class="tags" aria-label="相关标签">
+        <span class="tag">次元内容</span>
+        <span class="tag">标签索引</span>
+        <span class="tag">分类导航</span>
+        <span class="tag">浏览入口</span>
+        <span class="tag">资源查找</span>
+        <span class="tag">连载更新</span>
+        <span class="tag">使用说明</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">FAQ</span>
+        <h2>关于91次元浏览器的常见问题</h2>
+        <p>以下问题来自访问者在初次使用时的典型疑问，答案只描述首页本身能够说明的范围，不涉及页面之外的承诺。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>91次元浏览器首页主要提供什么？</summary>
+          <p>首页承担导览作用：说明浏览入口、使用路径、标签索引与常见问题，把分散的访问需求归拢到同一页面，方便先了解结构再进入具体内容。</p>
+        </details>
+        <details>
+          <summary>不知道目标分类时应该怎么找？</summary>
+          <p>建议从分类导航入手，先看整体范围。若已有大致方向，可直接用标签索引做二次筛选，比逐层点击更快。</p>
+        </details>
+        <details>
+          <summary>标签可以组合使用吗？</summary>
+          <p>可以。多个标签叠加时范围会收窄，建议保留区分度最高的一到两个，过多组合容易得到空结果。</p>
+        </details>
+        <details>
+          <summary>筛选没有结果怎么办？</summary>
+          <p>先切回“全部”分类，再换用更宽泛的关键词。若仍无结果，说明当前索引中没有对应条目，可返回分类导航重新选择方向。</p>
+        </details>
+        <details>
+          <summary>页面内容会持续整理吗？</summary>
+          <p>首页的栏目与索引示例会随整理进度调整，具体条目以页面实际展示为准，本页不对更新时间作出固定承诺。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载 / 收束 -->
+  <section id="download">
+    <div class="wrap">
+      <div class="download">
+        <div>
+          <h2>获取91次元浏览器页面包</h2>
+          <p>页面包包含首页结构说明与标签索引示例，适合离线查看栏目组织方式。下载入口目前处于占位状态，替换为正式地址后即可使用。</p>
+        </div>
+        <a class="btn btn-primary" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1" style="pointer-events:none;">下载</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">
+          <span class="mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="7.5" stroke="#fff" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="3" fill="#ffd166"/>
+            </svg>
+          </span>
+          91次元浏览器
+        </div>
+        <p>91次元浏览器主题首页，集中呈现次元内容的浏览入口、标签索引与使用说明，帮助访问者按清晰路径查找所需内容。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面导航</h4>
+          <a href="#entry">浏览入口</a>
+          <a href="#guide">使用路径</a>
+          <a href="#catalog">标签索引</a>
+          <a href="#faq">常见问题</a>
+        </div>
+        <div class="foot-col">
+          <h4>浏览提示</h4>
+          <a href="#guide">先分类后标签</a>
+          <a href="#catalog">组合标签收窄范围</a>
+          <a href="#faq">筛选无结果的处理</a>
+        </div>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2024 91次元浏览器 · 主题首页</span>
+      <span>内容以页面实际展示为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('mainNav');
+  if(toggle && nav){
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){ nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+    });
+  }
+
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var entries = Array.prototype.slice.call(document.querySelectorAll('#list .entry'));
+  var q = document.getElementById('q');
+  var searchBtn = document.getElementById('searchBtn');
+  var empty = document.getElementById('empty');
+  var currentCat = 'all';
+
+  function apply(){
+    var kw = (q && q.value ? q.value : '').trim();
+    var shown = 0;
+    entries.forEach(function(el){
+      var cat = el.getAttribute('data-cat') || '';
+      var text = el.textContent || '';
+      var okCat = (currentCat === 'all' || cat === currentCat);
+      var okKw = (kw === '' || text.indexOf(kw) !== -1);
+      var show = okCat && okKw;
+      el.style.display = show ? '' : 'none';
+      if(show) shown++;
+    });
+    if(empty) empty.style.display = shown === 0 ? 'block' : 'none';
+  }
+
+  chips.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      currentCat = btn.getAttribute('data-cat');
+      chips.forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      apply();
+    });
+  });
+  if(searchBtn) searchBtn.addEventListener('click', apply);
+  if(q){
+    q.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); apply(); } });
+    q.addEventListener('input', apply);
+  }
+})();
+</script>
+</body>
+</html>
